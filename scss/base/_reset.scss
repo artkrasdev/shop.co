@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    margin: 0 auto;
+    padding: 0;
+    background-color: var(--beige);
+    font-family: var(--font-family);
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  button {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+  }
+  
+  input {
+    border: none;
+  }

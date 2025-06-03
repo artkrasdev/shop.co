@@ -1,0 +1,20 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.top-selling {
+    @include flex(column, center, center);
+    max-width: $max-width-container;
+    margin: 0 auto;
+    padding-top: $space-section;
+
+    &__products {
+        @include flex(row, center, flex-start, $space-lg);        
+        margin-top: $space-xl;
+    }
+
+    button {
+        width: 20%;
+        margin: $space-xl 0 $space-section 0;
+        
+    }
+}

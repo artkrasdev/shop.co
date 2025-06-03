@@ -1,0 +1,15 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.brands {
+    @include flex(row, center, center);
+    background-color: $color-primary;
+    padding: $space-xxl;
+    
+
+    &__items {
+        @include flex(row, space-between, center);
+        width: 100%;
+        max-width: $max-width-container;
+    }
+}

@@ -1,0 +1,76 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.dress-styles {
+    @include flex(column, center, center);
+    max-width: $max-width-container;
+    margin: 0 auto;
+    padding: 3em 2em 2em 2em;
+    background-color: $color-gray;
+    border-radius: $radius-xxl;
+
+    &__items {
+        @include flex(column, center, center);
+        gap: 1em;
+        width: 100%;
+        padding: 2em;
+
+        &__row {
+            @include flex(row, center, center);
+            gap: 1rem;
+            width: 100%;
+        }
+
+        &__item {
+            position: relative;
+            overflow: hidden;
+            border-radius: $radius-xl;
+            height: 300px;
+            background-color: $color-secondary;
+            background-size: cover;
+            background-position: right;
+            background-repeat: no-repeat;
+
+            &--small {
+                @extend .dress-styles__items__item;
+                flex: 1;
+                
+                &:nth-child(1) {
+                    background-image: url('../assets/homepage/casual.png');
+                    background-size: 200%;
+                    background-position: right 45% top 45%;
+                }
+                
+                &:nth-child(2) {
+                    background-image: url('../assets/homepage/gym.png');
+                    background-size: 115%;
+                    background-position: right -5em top -9em;
+                }
+            }
+
+            &--large {
+                @extend .dress-styles__items__item;
+                flex: 2;
+
+                &:nth-child(1) {
+                    background-image: url('../assets/homepage/party.png');
+                    background-position: right -6em top -10em;
+                }
+                
+                &:nth-child(2) {
+                    background-image: url('../assets/homepage/formal.png');
+                    background-size: 160%;
+                    background-position: right 130% top 26%;
+                }
+            }
+
+            h4 {
+                @include text($font-size-lg, $font-weight-bold, $color-primary);
+                position: absolute;
+                top: 1em;
+                left: 1em;
+                z-index: 1;
+            }
+        }
+    }
+}

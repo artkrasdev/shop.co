@@ -1,0 +1,24 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+body {
+    font-family: $font-family-base;
+
+}
+
+h1 {
+    @include text($font-size-xxl, $font-weight-bold, $color-text);
+}
+
+h2 {
+    @include text($font-size-xl, $font-weight-bold, $color-text);
+}
+
+h3 {
+    @include text($font-size-xl, $font-weight-bold, $color-text);
+}
+
+p {
+    @include text($font-size-base, $font-weight-normal, $color-text-gray-light);
+}
+

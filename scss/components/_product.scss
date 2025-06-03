@@ -1,0 +1,50 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/functions' as *;
+
+.product {
+    @include flex(column, center, flex-start, $space-xs);
+    width: 25%;
+
+    &__rating {
+        @include flex(row, center, center);
+        gap: $space-sm;
+
+        &__stars {
+            @include flex(row, center, center, $space-sm);
+            
+        }
+    }
+
+    &__price {
+        @include flex(row, center, center, $space-sm);
+        
+        &--current {
+            @include text($font-size-md, $font-weight-medium, $color-primary);
+        }
+
+        &--original {
+            @include text($font-size-md, $font-weight-medium, $color-text-gray);
+            text-decoration: line-through;
+        }
+
+        &--discount {
+            background-color: transparentize-color($color-red, 0.15);
+            padding: 0.25rem 0.5rem;
+            border-radius: $radius-full;
+
+            p {
+                @include text($font-size-xs, $font-weight-normal, $color-red);
+            }
+        }
+    }
+
+    img {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: $radius-lg;
+        margin-bottom: 1em;
+    }
+
+}

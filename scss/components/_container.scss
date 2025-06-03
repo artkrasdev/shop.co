@@ -1,0 +1,10 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.container {
+    width: 100%;
+    max-width: $max-width-container;
+    margin: 0 auto;
+    height: 100%;
+    @include flex(column, center, left);
+}

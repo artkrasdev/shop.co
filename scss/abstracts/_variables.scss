@@ -1,0 +1,77 @@
+@import url('https://api.fontshare.com/v2/css?f[]=integral-cf@400,500,600,700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
+
+
+
+// COLORS
+$color-primary: #000000;
+$color-secondary: #FFFFFF;
+$color-gray: #F1F0F1;
+$color-gray-light: #F0F0F0;
+$color-text: #000000;
+$color-text-gray: #909090;
+$color-text-gray-light: #616060;
+$color-border: #e0e0e0;
+$color-red: #FF3E3E;
+
+
+// TYPOGRAPHY
+$font-family-base: 'Satoshi', sans-serif;
+$font-family-heading: 'Integral CF', sans-serif;
+
+$font-size-base: 1rem;
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-md: 1.25rem;
+$font-size-lg: 1.75rem;
+$font-size-xl: 2.5rem;
+$font-size-xxl: 4.5rem;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// BORDER RADIUS
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 20px;
+$radius-xxl: 40px;
+$radius-full: 9999px;
+
+// SPACING
+$space-xxs: 4px;
+$space-xs: 8px;
+$space-sm: 12px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 32px;
+$space-xxl: 40px;
+$space-section: 72px;
+
+// BUTTONS
+$btn-padding: 0.75rem 1.5rem;
+$btn-radius: 3px;
+$btn-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+// LAYOUT
+$max-width-container: 1280px;
+$max-width-content: 960px;
+
+// BREAKPOINTS
+$breakpoints: (
+  xs: 475px,
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  xxl: 1536px
+);
+
+
+
+
+
+
+

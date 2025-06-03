@@ -1,0 +1,17 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.review {
+    @include flex(column, center, flex-start);
+    border: 1px solid $color-border;
+    width: 33%;
+    padding: $space-lg $space-lg $space-xxl $space-lg;
+    margin-top: $space-lg;
+    gap: $space-xs;
+    border-radius: $radius-xl;
+
+    &__name {
+        @include flex(row, center, center);
+        gap: $space-xs;
+    }
+}

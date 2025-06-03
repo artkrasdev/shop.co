@@ -1,0 +1,46 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/functions' as *;
+
+.button {
+    padding: $space-md $space-xl;
+    border-radius: $radius-full;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &--primary {
+        @extend .button;
+        background-color: $color-primary;
+        color: $color-secondary;
+    }
+
+    &--secondary {
+        @extend .button;
+        background-color: transparent;
+        border: 1px solid $color-gray;
+        color: $color-primary;
+    }
+
+    &--white {
+        @extend .button;
+        background-color: $color-secondary;
+        color: $color-primary;
+    }
+}
+
+.social-button {
+    @include flex(row, center, center);
+    width: 28px;
+    height: 28px;
+    border-radius: $radius-full;
+    border: 1px solid $color-border;
+    background-color: $color-secondary;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: $color-primary;
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-secondary;
+    }
+}
