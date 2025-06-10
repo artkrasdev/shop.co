@@ -1,6 +1,7 @@
 @use '../../scss/abstracts/variables' as *;
 @use '../../scss/abstracts/mixins' as *;
 @use '../../scss/abstracts/functions' as *;
+@use '../../scss/base/reset' as *;
 
 :host {
     display: block;
@@ -13,7 +14,6 @@
 
     h4 {
         @include text($font-size-md, $font-weight-medium, $color-primary);
-        margin: 0;
     }
 
     &__rating {
@@ -25,7 +25,6 @@
 
         p {
             @include text($font-size-sm, $font-weight-normal, $color-text-gray);
-            margin: 0;
         }
     }
 
@@ -34,13 +33,11 @@
         
         &--current {
             @include text($font-size-md, $font-weight-medium, $color-primary);
-            margin: 0;
         }
 
         &--original {
             @include text($font-size-md, $font-weight-medium, $color-text-gray);
             text-decoration: line-through;
-            margin: 0;
         }
 
         &--discount {
@@ -50,7 +47,6 @@
 
             p {
                 @include text($font-size-xs, $font-weight-normal, $color-red);
-                margin: 0;
             }
         }
     }

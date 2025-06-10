@@ -1,0 +1,23 @@
+@use '../../scss/abstracts/variables' as *;
+@use '../../scss/abstracts/mixins' as *;
+@use '../../scss/base/reset' as *;
+
+:host {
+    display: block;
+    width: 33%;
+}
+
+.review {
+    @include flex(column, center, flex-start);
+    border: 1px solid $color-border;
+    width: 100%;
+    padding: $space-lg $space-lg $space-xxl $space-lg;
+    margin-top: $space-lg;
+    gap: $space-xs;
+    border-radius: $radius-xl;
+
+    &__name {
+        @include flex(row, center, center);
+        gap: $space-xs;
+    }
+}
