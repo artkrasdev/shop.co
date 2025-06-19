@@ -9,7 +9,8 @@
 <body>
     <main>
         <h1>Dashboard</h1>
-        
+        <div>Email: <span id="user-email"></span></div>
+        <button id="logout-button">Logout</button>
     </main>
     <script>
       fetch('http://localhost:8888/SHOP.CO/backend/api/check-session.php', {
@@ -21,11 +22,25 @@
       })
       .then(data => {
         if (!data.loggedIn) {
-          window.location.href = '/login.html';
+          window.location.href = '/login';
+        } else {
+          document.getElementById('user-email').textContent = data.user.email;
         }
       })
       .catch(() => {
-        window.location.href = '/login.html';
+        window.location.href = '/login';
+      });
+
+      document.getElementById('logout-button').addEventListener('click', () => {
+        fetch('http://localhost:8888/SHOP.CO/backend/api/logout.php', {
+          credentials: 'include'
+        })
+        .then(() => {
+          window.location.href = '/';
+        })
+        .catch(() => {
+          window.location.href = '/';
+        });
       });
     </script>
 </body>
