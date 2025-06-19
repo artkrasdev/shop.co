@@ -1,0 +1,93 @@
+@use '../../scss/abstracts/variables' as *;
+@use '../../scss/abstracts/mixins' as *;
+@use '../../scss/base/reset' as *;
+
+.header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: $color-secondary;
+
+    &__top {
+        @include flex(row, center, center);
+        background-color: $color-primary;
+        width: 100%;
+        padding: $space-xs 0;
+        color: $color-secondary;
+        position: relative;
+
+        p {
+            @include text($font-size-sm, $font-weight-light, $color-secondary);
+            margin: 0;
+            a {
+                color: $color-secondary;
+                text-decoration: underline;
+                margin-left: $space-xxs;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .nav {
+        @include flex(row, space-between, center);
+        width: 100%;
+        padding: $space-lg 0;
+        max-width: $max-width-container;
+        margin: 0 auto;
+        gap: $space-lg;
+
+        ul {
+            @include flex(row, center, center, $space-lg);
+            margin: 0 $space-xl;
+            
+            li {
+                a {
+                    @include text($font-size-base, $font-weight-light, $color-text);
+                }
+            }
+        }
+
+        &__search {
+            flex: 1;
+            margin: 0 $space-lg;
+            position: relative;
+
+            &__icon {
+                position: absolute;
+                left: $space-md;
+                top: 50%;
+                transform: translateY(-50%);
+                display: flex;
+                align-items: center;
+                pointer-events: none;
+
+            }
+
+            &__input {
+                width: 100%;
+                padding: $space-md $space-xl $space-md $space-xxl;
+                border-radius: $radius-full;
+                background: $color-gray-light;
+                border: none;
+                
+                &::placeholder {
+                    @include text($font-size-base, $font-weight-light, $color-text-gray);
+                }
+
+                &:focus {
+                    outline: none;
+                    box-shadow: 0 0 0 2px rgba($color-primary, 0.2);
+                }
+            }
+        }
+
+        &__icons{
+            @include flex(row, center, center, $space-md);  
+        }
+
+    }
+
+
+}
