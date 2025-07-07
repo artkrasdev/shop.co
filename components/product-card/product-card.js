@@ -16,8 +16,8 @@ class ProductCard extends HTMLElement {
         template.innerHTML = `
             <style>${styles}</style>
             <div class="product">
-                <img src=${image} alt=${name}>
-                <h4>${name}</h4>
+                <img src=${image} alt=${name} loading="lazy">
+                <h3>${name}</h3>
                 <div class="product__rating">
                     <div class="product__rating__stars">
                         ${this.generateStars(rating)}

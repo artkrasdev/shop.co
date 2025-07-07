@@ -14,7 +14,7 @@
         font-family: $font-family-heading;
         line-height: 1em;
         width: 50%;
-        
+
         p {
             line-height: 1.5em;
             font-weight: $font-weight-light;
@@ -31,6 +31,11 @@
         margin-top: $space-xxl;
 
         &__item {
+
+            p:first-child {
+                @include text($font-size-xl, $font-weight-bold, $color-text);
+            }
+            
             
             &:nth-child(1),
             &:nth-child(2) {

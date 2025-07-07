@@ -19,5 +19,11 @@
     &__name {
         @include flex(row, center, center);
         gap: $space-xs;
+
+        > p {
+            @include text($font-size-md, $font-weight-bold, $color-text);
+        }
     }
+
+
 }

@@ -36,15 +36,40 @@
                 flex: 1;
                 
                 &:nth-child(1) {
-                    background-image: url('../assets/homepage/casual.png');
+                    background-image: url('../assets/homepage/casual.webp');
                     background-size: 200%;
                     background-position: right 45% top 45%;
+
+                    @include respond-to(desktop) {
+                        background-image: url('../assets/homepage/thumbnails/casual-1200.webp');
+                    }
+
+                    @include respond-to(tablet) {
+                        background-image: url('../assets/homepage/thumbnails/casual-800.webp');
+                    }
+
+                    @include respond-to(phone) {
+                        background-image: url('../assets/homepage/thumbnails/casual-400.webp');
+                    }
+
                 }
                 
                 &:nth-child(2) {
-                    background-image: url('../assets/homepage/gym.png');
+                    background-image: url('../assets/homepage/gym.webp');
                     background-size: 115%;
                     background-position: right -5em top -9em;
+
+                    @include respond-to(desktop) {
+                        background-image: url('../assets/homepage/thumbnails/gym-1200.webp');
+                    }
+
+                    @include respond-to(tablet) {
+                        background-image: url('../assets/homepage/thumbnails/gym-800.webp');
+                    }
+
+                    @include respond-to(phone) {
+                        background-image: url('../assets/homepage/thumbnails/gym-400.webp');
+                    }
                 }
             }
 
@@ -53,18 +78,42 @@
                 flex: 2;
 
                 &:nth-child(1) {
-                    background-image: url('../assets/homepage/party.png');
+                    background-image: url('../assets/homepage/party.webp');
                     background-position: right -6em top -10em;
+
+                    @include respond-to(desktop) {
+                        background-image: url('../assets/homepage/thumbnails/party-1200.webp');
+                    }
+
+                    @include respond-to(tablet) {
+                        background-image: url('../assets/homepage/thumbnails/party-800.webp');
+                    }
+
+                    @include respond-to(phone) {
+                        background-image: url('../assets/homepage/thumbnails/party-400.webp');
+                    }
                 }
                 
                 &:nth-child(2) {
-                    background-image: url('../assets/homepage/formal.png');
+                    background-image: url('../assets/homepage/formal.webp');
                     background-size: 160%;
                     background-position: right 130% top 26%;
+
+                    @include respond-to(desktop) {
+                        background-image: url('../assets/homepage/thumbnails/party-1200.webp');
+                    }
+
+                    @include respond-to(tablet) {
+                        background-image: url('../assets/homepage/thumbnails/party-800.webp');
+                    }
+
+                    @include respond-to(phone) {
+                        background-image: url('../assets/homepage/thumbnails/party-400.webp');
+                    }
                 }
             }
 
-            h4 {
+             > p {
                 @include text($font-size-lg, $font-weight-bold, $color-primary);
                 position: absolute;
                 top: 1em;

@@ -13,27 +13,25 @@
 
         <h1>YOUR CART</h1>
         <div class="cart">
-            <div class="cart__items">
-                <cart-item name="Gradient Graphic T-shirt" size="Large" color="white" price="145" quantity="1" image="/assets/products/product-1.png"></cart-item>
-            </div>
+            <div class="cart__items" id="cart-container"></div>
             <div class="cart__summary">
                 <h2>Order Summary</h2>
                 <div class="cart__summary__items">
                     <div class="cart__summary__items__item">
                         <p>Subtotal</p>
-                        <p>$565</p>
+                        <p data-field="subtotal">$0</p>
                     </div>
                     <div class="cart__summary__items__item--discount">
                         <p>Discount</p>
-                        <p>-$113</p>
+                        <p data-field="discount">$0</p>
                     </div>
                     <div class="cart__summary__items__item">
                         <p>Delivery Fee</p>
-                        <p>$10</p>
+                        <p data-field="delivery">$0</p>
                     </div>
                     <div class="cart__summary__items__item">
                         <p>Total</p>
-                        <p>$467</p>
+                        <p data-field="total">$0</p>
                     </div>
                 </div>
                 <div class="cart__summary__promo">
@@ -51,5 +49,39 @@
         </div>
     </main>
     <script type="module" src="/src/main.js"></script>
+    <script type="module">
+        const container = document.getElementById('cart-container');
+        const field = n => document.querySelector(`[data-field="${n}"]`);
+
+        async function loadCart() {
+            const res = await fetch('http://localhost:8888/SHOP.CO/backend/api/cart.php', { credentials: 'include' });
+            const data = await res.json();
+
+            if (data.items.length === 0) {
+                container.innerHTML = '<p>Your cart is empty</p>';
+                return;
+            }
+
+            container.innerHTML = '';
+            data.items.forEach(it => {
+                container.insertAdjacentHTML('beforeend', `
+                    <cart-item
+                        name="${it.name}"
+                        size="${it.variant?.size ?? ''}"
+                        color="${it.variant?.color ?? ''}"
+                        price="${it.price}"
+                        quantity="${it.qty}"
+                        image="${it.image ?? ''}"
+                        line_id="${it.line_id}">
+                    </cart-item>
+                `);
+            });
+
+            ['subtotal','discount','delivery','total'].forEach(k => field(k).textContent = `$${data[k].toFixed(2)}`);
+        }
+
+        window.addEventListener('cart:updated', e => loadCart());
+        loadCart();
+    </script>
 </body>
 </html>

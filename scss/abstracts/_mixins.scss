@@ -18,3 +18,9 @@
     gap: $gap;
 }
 
+@mixin respond-to($device) {
+  @media (max-width: map-get($breakpoints, $device)) {
+    @content;
+  }
+}
+

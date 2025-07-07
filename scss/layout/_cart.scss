@@ -1,12 +1,12 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-h1 {
+main > h1 {
     @include text($font-size-xl, $font-weight-bold, $color-text);
     padding: $space-md 0;
 }
 
-h2 {
+main > h2 {
     @include text($font-size-md, $font-weight-medium, $color-text);
 }
 

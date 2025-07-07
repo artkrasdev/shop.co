@@ -39,11 +39,16 @@
             @include flex(column, space-between, flex-end);
             height: 100%;
 
+            svg {
+                cursor: pointer;
+            }
+
             &__quantity {
                 @include flex(row, center, center, $space-md);
                 background: $color-gray;
                 padding: $space-xs $space-lg;
                 border-radius: $radius-full;
+
 
             }
         }
