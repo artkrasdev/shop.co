@@ -5,12 +5,14 @@
 :host {
     display: block;
     width: 33%;
+    
 }
 
 .review {
     @include flex(column, center, flex-start);
     border: 1px solid $color-border;
     width: 100%;
+    min-width: 25em;
     padding: $space-lg $space-lg $space-xxl $space-lg;
     margin-top: $space-lg;
     gap: $space-xs;
@@ -26,4 +28,14 @@
     }
 
 
+}
+
+@include respond-to(phone) {
+    :host {
+        width: 100%;
+    }
+
+    .review {
+        min-width: 100%;
+    }
 }

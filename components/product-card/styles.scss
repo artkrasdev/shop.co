@@ -6,13 +6,21 @@
 :host {
     display: block;
     width: 25%;
+
+    @include respond-to(phone) {
+        width: 100%;
+    }
 }
 
 .product {
     @include flex(column, center, flex-start, $space-xs);
     width: 100%;
 
-    h3 {
+    @include respond-to(phone) {
+        width: 18em;
+    }
+
+    h4 {
         @include text($font-size-md, $font-weight-medium, $color-primary);
     }
 

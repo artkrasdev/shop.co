@@ -36,6 +36,28 @@
                 width: 100%;
             }
         }
+
+        @include respond-to(phone) {
+            flex-direction: column;
+            padding: $space-xl $space-md;
+            margin: 0 $space-md;
+            width: 95%;
+
+           > h2  {
+            margin-bottom: $space-lg;
+            padding: 0 $space-sm;
+           }
+
+           br {
+            display: none;
+           }
+
+            &__form {
+                width: 95%;
+            }
+
+
+        }
     }
 
     &__main   {
@@ -51,6 +73,20 @@
             gap: $space-xl;
             max-width: $max-width-container;
             width: 100%;
+
+            @include respond-to(phone) {
+                max-width: 95%;
+                grid-template-columns: repeat(2, 1fr);
+                justify-items: start;
+
+                &--first {
+                    grid-column: 1 / -1; 
+                }
+
+                &--links {
+                    @include flex(column, flex-start, flex-start);
+                }
+            }
 
             &--first {
                 p {
@@ -96,6 +132,11 @@
             margin-top: $space-lg;
             padding: $space-lg 0 $space-section 0;
             border-top: 1px solid $color-border;
+
+            @include respond-to(phone) {
+                flex-direction: column;
+                gap: $space-md;
+            }
 
             &__payments {
                 @include flex(row, center, center);

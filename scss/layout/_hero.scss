@@ -8,6 +8,10 @@
     position: relative;
     overflow: hidden;
 
+    @include respond-to(phone) {
+        height: 115vh;
+    }
+
     &__content {
         @include flex(column, center, left);
         @include text($font-size-xxl, $font-weight-bold, $color-text);
@@ -22,7 +26,20 @@
         }
 
         button {
-            max-width: 30%;
+            width: 30%;
+        }
+
+        @include respond-to(phone) {
+            @include flex(column, center, center);
+            width: 100%;
+            padding-top: $space-xxl;
+
+            button {
+                width: 100%;
+                max-width: 100%;
+                padding: $space-lg 0;
+                font-size: $font-size-base;
+            }
         }
     }
 
@@ -44,6 +61,40 @@
                 margin-right: $space-xl;
             }
         }
+
+        @include respond-to(phone) {
+            @include flex(row, center, center);
+            width: 100%;
+            flex-wrap: wrap;
+
+            p:first-child {
+                font-size: $font-size-lg;
+            }
+
+            p:last-child {
+                font-size: $font-size-base;
+            }
+
+            &__item:nth-child(1) {
+                width: fit-content;
+                padding-right: $space-lg;
+                margin-right: $space-lg;
+                border-right: 1px solid $color-border;
+            }
+
+            &__item:nth-child(2) {
+                width: fit-content;
+                border-right: none;
+                padding-right: 0;
+                margin-right: 0;
+            }
+
+            &__item:nth-child(3) {
+                width: 100%;
+                text-align: center;
+                padding-top: $space-lg;
+            }
+        }
     }
 
     img {
@@ -54,5 +105,12 @@
         object-fit: cover;
         object-position: top;
         z-index: 1;
+
+        @include respond-to(phone) {
+            position: relative;
+            width: 100%;
+            scale: 1.1;
+            
+        }
     }
 }

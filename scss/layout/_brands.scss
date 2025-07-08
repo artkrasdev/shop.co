@@ -12,4 +12,20 @@
         width: 100%;
         max-width: $max-width-container;
     }
+
+    @include respond-to(phone) {
+        padding: $space-lg 0;
+
+        &__items {
+            @include flex(row, center, center);
+            flex-wrap: wrap;
+            gap: $space-lg;
+
+            svg {
+                width: 25%;
+            }
+        }
+    }
+
+    
 }

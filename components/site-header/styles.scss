@@ -38,9 +38,31 @@
         margin: 0 auto;
         gap: $space-lg;
 
+        @include respond-to(phone) {
+            padding: $space-lg $space-md;
+        }
+
+        &__logo {
+            @include flex(row, start, center);
+            
+            gap: $space-md;
+
+            > svg {
+                display: none;
+
+                @include respond-to(phone) {
+                    display: block;
+                }
+            }
+        }
+
         ul {
             @include flex(row, center, center, $space-lg);
             margin: 0 $space-xl;
+
+            @include respond-to(phone) {
+                display: none;
+            }
             
             li {
                 a {
@@ -53,6 +75,10 @@
             flex: 1;
             margin: 0 $space-lg;
             position: relative;
+
+            @include respond-to(phone) {
+                display: none;
+            }
 
             &__icon {
                 position: absolute;
@@ -67,7 +93,7 @@
 
             &__input {
                 width: 100%;
-                padding: $space-md $space-xl $space-md $space-xxl;
+                padding: $space-md $space-xl $space-md $space-xxl + $space-xs;
                 border-radius: $radius-full;
                 background: $color-gray-light;
                 border: none;
@@ -85,6 +111,14 @@
 
         &__icons{
             @include flex(row, center, center, $space-md);  
+
+            &--search {
+                display: none;
+
+                @include respond-to(phone) {
+                    display: block;
+                }
+            }
         }
 
     }
