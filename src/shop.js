@@ -98,9 +98,12 @@ document.addEventListener('DOMContentLoaded', () => {
       .replace(/[^\w-]/g, ''); // remove non-word chars except hyphen
 
   /* Pagination state */
-  const ITEMS_PER_PAGE = 9; // 3 columns x 3 rows
+  const determineItemsPerPage = () => (window.matchMedia('(max-width: 600px)').matches ? 6 : 9);
+  let ITEMS_PER_PAGE = determineItemsPerPage();
+
   let currentPage = 1;
   let lastMatchingCards = [];
+  let resultsTextEl = null;
 
   /* Pagination elements */
   const paginationWrapper = document.querySelector('.shop__products__pagination');
@@ -143,12 +146,32 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!lastMatchingCards.length) return;
     const totalPages = Math.ceil(lastMatchingCards.length / ITEMS_PER_PAGE);
 
-    // Ensure currentPage within bounds
-    if (currentPage > totalPages) currentPage = totalPages;
-    if (currentPage < 1) currentPage = 1;
+    // Update results counter text
+    if (!resultsTextEl) {
+      /* Grab first p inside sort container once */
+      const sortContainer = document.querySelector('.shop__products__header__sort');
+      if (sortContainer) {
+        resultsTextEl = sortContainer.querySelector('p');
+      }
+    }
 
     const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
     const endIdx = startIdx + ITEMS_PER_PAGE;
+
+    const showingBegin = lastMatchingCards.length === 0 ? 0 : startIdx + 1;
+    const showingEnd = Math.min(endIdx, lastMatchingCards.length);
+
+    if (resultsTextEl) {
+      if (lastMatchingCards.length === 0) {
+        resultsTextEl.textContent = 'No results';
+      } else {
+        resultsTextEl.textContent = `Showing ${showingBegin}-${showingEnd} of ${lastMatchingCards.length} results`;
+      }
+    }
+
+    // Ensure currentPage within bounds after grabbing indices as above
+    if (currentPage > totalPages) currentPage = totalPages;
+    if (currentPage < 1) currentPage = 1;
 
     lastMatchingCards.forEach((card, idx) => {
       card.style.display = idx >= startIdx && idx < endIdx ? '' : 'none';
@@ -361,9 +384,33 @@ document.addEventListener('DOMContentLoaded', () => {
    * Apply Filters button
    * -------------------------------------------------- */
   const applyFiltersBtn = document.querySelector('.shop__filters__styles button');
+
+  /* --------------------------------------------------
+   * Mobile filters toggle (overlay & slide-up)
+   * -------------------------------------------------- */
+  const filtersButton = document.querySelector('.shop__products__header__sort__filters');
+  const filtersPanel = document.querySelector('.shop__filters');
+  const filtersOverlay = document.getElementById('filters-overlay');
+
+  const closeFilters = () => {
+    if (filtersPanel) filtersPanel.classList.remove('open');
+    if (filtersOverlay) filtersOverlay.classList.remove('active');
+  };
+
+  if (filtersButton && filtersPanel && filtersOverlay) {
+    filtersButton.addEventListener('click', () => {
+      filtersPanel.classList.add('open');
+      filtersOverlay.classList.add('active');
+    });
+
+    filtersOverlay.addEventListener('click', closeFilters);
+  }
+
   if (applyFiltersBtn) {
     applyFiltersBtn.addEventListener('click', () => {
       filterCards();
+      // Close filters on mobile after applying
+      closeFilters();
     });
   }
 
@@ -386,4 +433,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  /* --------------------------------------------------
+   * Handle viewport resize to adjust items per page
+   * -------------------------------------------------- */
+  window.addEventListener('resize', () => {
+    const newVal = determineItemsPerPage();
+    if (newVal !== ITEMS_PER_PAGE) {
+      ITEMS_PER_PAGE = newVal;
+      updateDisplayedCards();
+    }
+  });
 }); 

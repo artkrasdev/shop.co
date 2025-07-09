@@ -6,6 +6,7 @@
 :host {
     display: block;
     width: var(--card-width, 25%);
+    height: fit-content;
 
     @include respond-to(phone) {
         width: 100%;
@@ -18,7 +19,7 @@
     cursor: pointer;
 
     @include respond-to(phone) {
-        width: 18em;
+        max-width: 18em;
     }
 
     h4 {

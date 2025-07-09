@@ -31,6 +31,10 @@
                 }
             }
 
+            &__filters {
+                display: none;
+            }
+
             &__categories {
                 @include flex(column, start, start);
                 width: 100%;
@@ -260,10 +264,14 @@
                 margin-bottom: $space-md;
 
                 &__sort {
-                    @include flex(row, start, center);
+                    @include flex(row, center, center);
 
                     p {
                         margin-right: $space-sm;
+                    }
+
+                    &__filters {
+                        display: none;
                     }
                 }
 
@@ -277,6 +285,7 @@
                 padding-bottom: $space-xl;
                 margin-bottom: $space-lg;
                 border-bottom: 1px solid $color-border;
+                min-height: 85em;
             }
 
             &__pagination {
@@ -332,5 +341,75 @@
                 }
             }
         }
+    }
+
+    @include respond-to(phone) {
+        padding: $space-md $space-md 0 $space-md;
+        
+        .shop {
+            width: 100%;
+            
+            &__filters {
+                display: block;
+                position: fixed;
+                top: 7em;
+                left: 0;
+                width: 100%;
+                background: $color-secondary;
+                z-index: 1000;
+                transform: translateY(100%);
+                transition: transform 0.3s ease-in-out;
+                max-height: calc(100vh - 7em);
+                overflow-y: auto;
+
+                &.open {
+                    transform: translateY(0);
+                }
+            }
+
+            &__products {
+                &__header {
+                    &__sort {
+                        &__filters {
+                            display: block;
+                            @include flex(row, center, center);
+                            background: $color-gray-light;
+                            border-radius: $radius-full;
+                            width: 32px;
+                            height: 32px;
+                            cursor: pointer;
+
+                            svg {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+
+                &__items {
+                    grid-template-columns: repeat(2, 1fr);
+                    min-height: 70em
+                    
+                }
+            }
+
+
+        }
+    }
+}
+
+/* Overlay */
+.filters-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 999;
+
+    &.active {
+        opacity: 1;
+        pointer-events: auto;
     }
 }
