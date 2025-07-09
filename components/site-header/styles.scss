@@ -9,6 +9,7 @@
     width: 100%;
     z-index: 100;
     background-color: $color-secondary;
+    
 
     &__top {
         @include flex(row, center, center);
@@ -123,5 +124,16 @@
 
     }
 
+    &:after {
+        content: '';
+        height: 1px;
+        background-color: $color-border;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: $max-width-container;
+    }
 
 }

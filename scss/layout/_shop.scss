@@ -2,10 +2,11 @@
 @use '../abstracts/mixins' as *;
 
 
-main {
+#shop {
     @include flex(column, start, start);
     max-width: $max-width-container;
     margin: 0 auto;
+    padding-top: $space-lg;
 
     .shop {
         @include flex(row, start, start, $space-lg);
@@ -45,6 +46,11 @@ main {
                         @include flex(row, space-between, center);
                         width: 100%;
                         margin-bottom: $space-sm;
+                        cursor: pointer;
+
+                        &.selected {
+                            color: $color-primary;
+                        }
                     }
                 }
             }
