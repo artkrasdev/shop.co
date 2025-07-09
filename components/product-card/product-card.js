@@ -4,6 +4,31 @@ class ProductCard extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
+    }
+
+    static get observedAttributes() {
+        return ['width'];
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name === 'width' && oldValue !== newValue) {
+            this.updateWidth();
+        }
+    }
+
+    updateWidth() {
+        const width = this.getAttribute('width');
+        if (width) {
+            this.style.setProperty('--card-width', width);
+        } else {
+            this.style.removeProperty('--card-width');
+        }
+    }
+
+    connectedCallback() {
+
+        this.shadowRoot.innerHTML = '';
+        this.updateWidth();
 
         const rating = this.getAttribute('rating');
         const price = this.getAttribute('price');
@@ -11,13 +36,14 @@ class ProductCard extends HTMLElement {
         const discount = this.getAttribute('discount');
         const image = this.getAttribute('image');
         const name = this.getAttribute('name');
+        const slug = this.getAttribute('slug');
 
         const template = document.createElement('template');
         template.innerHTML = `
             <style>${styles}</style>
-            <div class="product">
-                <img src=${image} alt=${name} loading="lazy">
-                <h3>${name}</h3>
+            <div class="product" onclick="window.location.href = '/product/${slug}'">
+                <img src="${image || ''}" alt="${name || ''}" loading="lazy">
+                <h3>${name || ''}</h3>
                 <div class="product__rating">
                     <div class="product__rating__stars">
                         ${this.generateStars(rating)}
@@ -25,7 +51,7 @@ class ProductCard extends HTMLElement {
                     <p>${rating}/5</p>
                 </div>
                 <div class="product__price">
-                    <p class="product__price--current">$${price}</p>
+                    <p class="product__price--current">$${price || ''}</p>
                     ${originalPrice ? `<p class="product__price--original">$${originalPrice}</p>` : ''}
                     ${discount ? `
                         <div class="product__price--discount">
@@ -59,7 +85,6 @@ class ProductCard extends HTMLElement {
         `;
     }
 
-    render() {}
 }
 
 customElements.define('product-card', ProductCard);
