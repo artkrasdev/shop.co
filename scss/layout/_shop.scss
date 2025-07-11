@@ -1,5 +1,6 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
+@use 'sass:color';
 
 
 #shop {
@@ -171,16 +172,16 @@
                         }
  
                         /* Darker border per color (Sass darken) */
-                        &:nth-child(1).selected { border-color: darken(#00C04B, 15%); }
-                        &:nth-child(2).selected { border-color: darken(#FF0000, 15%); }
-                        &:nth-child(3).selected { border-color: darken(#FFE600, 15%); }
-                        &:nth-child(4).selected { border-color: darken(#FF7A00, 15%); }
-                        &:nth-child(5).selected { border-color: darken(#00C8FF, 15%); }
-                        &:nth-child(6).selected { border-color: darken(#004CFF, 15%); }
-                        &:nth-child(7).selected { border-color: darken(#7A00FA, 15%); }
-                        &:nth-child(8).selected { border-color: darken(#FF00AA, 15%); }
-                        &:nth-child(9).selected { border-color: darken(#FFFFFF, 15%); }
-                        &:nth-child(10).selected { border-color: darken(#000000, 15%); }
+                        &:nth-child(1).selected { border-color: color.adjust(#00C04B, $lightness: -15%); }
+                        &:nth-child(2).selected { border-color: color.adjust(#FF0000, $lightness: -15%); }
+                        &:nth-child(3).selected { border-color: color.adjust(#FFE600, $lightness: -15%); }
+                        &:nth-child(4).selected { border-color: color.adjust(#FF7A00, $lightness: -15%); }
+                        &:nth-child(5).selected { border-color: color.adjust(#00C8FF, $lightness: -15%); }
+                        &:nth-child(6).selected { border-color: color.adjust(#004CFF, $lightness: -15%); }
+                        &:nth-child(7).selected { border-color: color.adjust(#7A00FA, $lightness: -15%); }
+                        &:nth-child(8).selected { border-color: color.adjust(#FF00AA, $lightness: -15%); }
+                        &:nth-child(9).selected { border-color: color.adjust(#FFFFFF, $lightness: -15%); }
+                        &:nth-child(10).selected { border-color: color.adjust(#000000, $lightness: -15%); }
                     }
                 }
             }

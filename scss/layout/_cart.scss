@@ -1,101 +1,148 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-main > h1 {
-    @include text($font-size-xl, $font-weight-bold, $color-text);
-    padding: $space-md 0;
-}
+#cart {
+    max-width: $max-width-container;
+    margin: 0 auto;
 
-main > h2 {
-    @include text($font-size-md, $font-weight-medium, $color-text);
-}
-
-.cart {
-    @include flex(row, space-between, flex-start);
-    gap: $space-md;
-    width: 100%;
-
-    &__items {
-        @include flex(column, space-between, center);
-        border: 1px solid $color-border;
-        padding: $space-lg;
-        border-radius: $radius-lg;
-        width: 60%;
- 
+    h1 {
+        @include text($font-size-xl, $font-weight-bold, $color-text);
+        padding: $space-md 0;
+    }
+    
+    h2 {
+        @include text($font-size-md, $font-weight-medium, $color-text);
+    }
+    
+    p {
+        margin-top: $space-md;
     }
 
-    &__summary {
-        @include flex(column, space-between, flex-start);
-        border: 1px solid $color-border;
-        padding: $space-lg;
-        border-radius: $radius-lg;
-        width: 40%;
+    .cart {
+        @include flex(row, space-between, flex-start);
+        gap: $space-md;
+        width: 100%;
 
         &__items {
-            @include flex(column, space-between, flex-start);
-            width: 100%;
-            padding: $space-md 0;
-            gap: $space-sm;
+            @include flex(column, space-between, center);
+            border: 1px solid $color-border;
+            padding: $space-lg;
+            border-radius: $radius-lg;
+            width: 60%;
+            height: fit-content;
 
-            &__item {
+            cart-item:not(:last-child) {
+                display: block;
+                border-bottom: 1px solid $color-gray;
+                padding-bottom: $space-lg;
+                margin-bottom: $space-lg;
+            }
+
+            @include respond-to(phone) {
+                width: 100%;
+                padding: $space-md;
+
+                cart-item:not(:last-child) {
+                    padding-bottom: $space-md;
+                    margin-bottom: $space-md;
+                }
+            }
+    
+        }
+
+        &__summary {
+            @include flex(column, space-between, flex-start);
+            border: 1px solid $color-border;
+            padding: $space-lg;
+            border-radius: $radius-lg;
+            width: 40%;
+
+            &__items {
+                @include flex(column, space-between, flex-start);
+                width: 100%;
+                padding: $space-md 0;
+                gap: $space-sm;
+
+                &__item {
+                    @include flex(row, space-between, center);
+                    width: 100%;
+
+                    p:nth-child(2) {
+                        @include text($font-size-base, $font-weight-bold, $color-primary);
+                    }
+        
+                    &--discount {
+                        @extend .cart__summary__items__item;
+
+                        p:nth-child(2) {
+                            color: $color-red;
+                        }
+                    }
+
+                    &:last-child {
+                        padding-top: $space-md;
+                        border-top: 1px solid $color-border;
+
+                        p:nth-child(2) {
+                            @include text($font-size-md, $font-weight-bold, $color-primary);
+                        }
+                    }
+                }
+            }
+
+            &__promo {
                 @include flex(row, space-between, center);
                 width: 100%;
 
-                p:nth-child(2) {
-                    @include text($font-size-base, $font-weight-bold, $color-primary);
-                }
-    
-                &--discount {
-                    @extend .cart__summary__items__item;
+                &__input {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    background-color: $color-gray;
+                    padding: $space-sm $space-lg;
+                    border-radius: $radius-full;
+                    margin-right: $space-md;
 
-                    p:nth-child(2) {
-                        color: $color-red;
+                    input {
+                        flex: 1;
+                        border: none;
+                        outline: none;
+                        background: transparent;
+                        padding: 0 0 0 $space-md;
+
+                        &::placeholder {
+                            @include text($font-size-sm, $font-weight-light, $color-text-gray);
+                        }
                     }
                 }
-
-                &:last-child {
-                    padding-top: $space-md;
-                    border-top: 1px solid $color-border;
-
-                    p:nth-child(2) {
-                        @include text($font-size-md, $font-weight-bold, $color-primary);
-                    }
-                }
+                
             }
-        }
 
-        &__promo {
-            @include flex(row, space-between, center);
-            width: 100%;
-
-            &__input {
-                display: flex;
-                align-items: center;
+            > button {
+                @include flex(row, center, center, $space-md);
+                margin-top: $space-lg;
                 width: 100%;
-                background-color: $color-gray;
-                padding: $space-sm $space-lg;
-                border-radius: $radius-full;
-                margin-right: $space-md;
-
-                input {
-                    flex: 1;
-                    border: none;
-                    outline: none;
-                    background: transparent;
-                    padding: 0 0 0 $space-md;
-
-                    &::placeholder {
-                        @include text($font-size-sm, $font-weight-light, $color-text-gray);
-                    }
-                }
             }
-            
         }
 
-        > button {
-            @include flex(row, center, center, $space-md);
-            margin-top: $space-lg;
-            width: 100%;
+        @include respond-to(phone) {
+            flex-direction: column;
+
+            &__items {
+                width: 100%;
+            }
+
+            &__summary {
+                width: 100%;
+            }
         }
     }
+
+    @include respond-to(phone) {
+        max-width: 100%;
+        padding: 0 $space-md;
+    }
+
 }
+
+

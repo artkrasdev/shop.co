@@ -41,7 +41,7 @@ class ProductCard extends HTMLElement {
         const template = document.createElement('template');
         template.innerHTML = `
             <style>${styles}</style>
-            <div class="product" onclick="window.location.href = '/product/${slug}'">
+            <div class="product" onclick="window.location.href = '/product?${slug}'">
                 <img src="${image || ''}" alt="${name || ''}" loading="lazy">
                 <h3>${name || ''}</h3>
                 <div class="product__rating">

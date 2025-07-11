@@ -19,7 +19,9 @@
     cursor: pointer;
 
     @include respond-to(phone) {
-        max-width: 18em;
+        min-width: var(--card-width, 18em);
+        width: 100%;
+        
     }
 
     h4 {

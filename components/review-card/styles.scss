@@ -4,7 +4,7 @@
 
 :host {
     display: block;
-    width: 33%;
+    width: 100%;
     
 }
 
@@ -13,19 +13,33 @@
     border: 1px solid $color-border;
     width: 100%;
     min-width: 25em;
-    padding: $space-lg $space-lg $space-xxl $space-lg;
-    margin-top: $space-lg;
+    padding: $space-lg;
     gap: $space-xs;
     border-radius: $radius-xl;
+
+    &__stars {
+        @include flex(row, center, center, $space-xs);
+    }
 
     &__name {
         @include flex(row, center, center);
         gap: $space-xs;
 
         > p {
-            @include text($font-size-md, $font-weight-bold, $color-text);
+            @include text($font-size-md, $font-weight-medium, $color-text);
         }
     }
+
+    > p {
+        @include text($font-size-base, $font-weight-normal, $color-text-gray);
+        padding-right: $space-md;
+    }
+    
+    p:last-child {
+        @include text($font-size-base, $font-weight-normal, $color-text-gray-light);
+        margin-top: $space-md;
+    }
+
 
 
 }

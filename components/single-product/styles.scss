@@ -10,7 +10,7 @@
 }
 
 .single-product {
-    @include flex(row, center, space-between, $space-xl);
+    @include flex(row, space-between, center, $space-xl);
     margin-top: $space-lg;
 
     &__info {
@@ -18,7 +18,11 @@
         width: 50%;
 
         &__rating {
-            @include flex(row, center, center, $space-xxs);
+            @include flex(row, center, center, $space-xs);
+
+            &__stars {
+                @include flex(row, center, center, $space-xs);
+            }
         }
 
         &__price {
@@ -47,14 +51,16 @@
 
         > p {
             @include text($font-size-sm, $font-weight-light, $color-text-gray);
+            border-bottom: 1px solid $color-border;
+            margin-bottom: $space-sm;
+            padding-bottom: $space-sm;
         }
 
         &__colors {
             @include flex(column, center, flex-start, $space-sm);
             width: 100%;
-            margin: $space-sm 0;
-            padding: $space-sm 0;
-            border-top: 1px solid $color-border;
+            margin-bottom: $space-sm;
+            padding-bottom: $space-sm;
             border-bottom: 1px solid $color-border;
 
             p {
@@ -117,7 +123,6 @@
                     padding: $space-sm $space-md;
                     border-radius: $radius-full;
                     cursor: pointer;
-                    border: 1px solid $color-border;
                     transition: background 0.2s, color 0.2s;
                 }
 
@@ -153,6 +158,14 @@
             }
         }
 
+    }
+
+    @include respond-to(phone) {
+        @include flex(column, center, center, $space-md);
+
+        &__info {
+            width: 100%;
+        }
     }
 
 }

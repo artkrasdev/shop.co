@@ -42,7 +42,7 @@
           <h1>FIND CLOTHES THAT MATCHES YOUR STYLE</h1>
           <p>Browse through our diverse range of meticulously crafted garments, designed <br />to bring out your
             individuality and cater to your sense of style.</p>
-          <button class="button--primary">Shop Now</button>
+          <button onclick="window.location.href='/shop'" class="button--primary">Shop Now</button>
         </div>
 
         <div class="hero__features">
@@ -126,32 +126,32 @@
       <h2>NEW ARRIVALS</h2>
       <div class="new-arrivals__products">
       </div>
-      <button class="button--secondary">View All</button>
+      <button onclick="window.location.href='/shop?category=new-arrivals'" class="button--secondary">View All</button>
     </section>
 
     <section class="top-selling">
       <h2>TOP SELLING</h2>
       <div class="top-selling__products">
       </div>
-      <button class="button--secondary">View All</button>
+      <button onclick="window.location.href='/shop?category=top-selling'" class="button--secondary">View All</button>
     </section>
 
     <section class="dress-styles">
       <h2>BROWSE BY <br> DRESS STYLE</h2>
       <div class="dress-styles__items">
         <div class="dress-styles__items__row">
-          <div class="dress-styles__items__item--small">
+          <div class="dress-styles__items__item--small" onclick="window.location.href='/shop?category=casual'">
             <p>Casual</p>
           </div>
-          <div class="dress-styles__items__item--large">
+          <div class="dress-styles__items__item--large" onclick="window.location.href='/shop?category=formal'">
             <p>Formal</p>
           </div>
         </div>
         <div class="dress-styles__items__row">
-          <div class="dress-styles__items__item--large">
+          <div class="dress-styles__items__item--large" onclick="window.location.href='/shop?category=party'">
             <p>Party</p>
           </div>
-          <div class="dress-styles__items__item--small">
+          <div class="dress-styles__items__item--small" onclick="window.location.href='/shop?category=gym'">
             <p>Gym</p>
           </div>
         </div>

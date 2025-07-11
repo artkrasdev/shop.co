@@ -8,7 +8,7 @@
 </head>
 <body>
     <site-header></site-header>
-    <main class="container">
+    <main id="cart">
         <p>Home > Cart</p>
 
         <h1>YOUR CART</h1>
@@ -53,31 +53,43 @@
         const container = document.getElementById('cart-container');
         const field = n => document.querySelector(`[data-field="${n}"]`);
 
-        async function loadCart() {
-            const res = await fetch('http://localhost:8888/SHOP.CO/backend/api/cart.php', { credentials: 'include' });
-            const data = await res.json();
+        function calculateTotals(items) {
+            const subtotal = items.reduce((sum, it) => sum + (parseFloat(it.price) * it.qty), 0);
+            const discount = 0; // No discount logic yet
+            const delivery = 0; // Free delivery
+            const total = subtotal + delivery - discount;
+            return { subtotal, discount, delivery, total };
+        }
 
-            if (data.items.length === 0) {
-                container.innerHTML = '<p>Your cart is empty</p>';
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="margin-top: 0;">Your cart is empty</p>';
+                ['subtotal','discount','delivery','total'].forEach(k => field(k).textContent = '$0');
                 return;
             }
 
             container.innerHTML = '';
-            data.items.forEach(it => {
+            cart.forEach(it => {
                 container.insertAdjacentHTML('beforeend', `
                     <cart-item
+                        product_id="${it.product_id}"
                         name="${it.name}"
-                        size="${it.variant?.size ?? ''}"
-                        color="${it.variant?.color ?? ''}"
+                        size="${it.size ?? ''}"
+                        color="${it.color ?? ''}"
                         price="${it.price}"
                         quantity="${it.qty}"
-                        image="${it.image ?? ''}"
-                        line_id="${it.line_id}">
+                        image="${it.image ?? ''}">
                     </cart-item>
                 `);
             });
 
-            ['subtotal','discount','delivery','total'].forEach(k => field(k).textContent = `$${data[k].toFixed(2)}`);
+            const totals = calculateTotals(cart);
+            field('subtotal').textContent = `$${totals.subtotal.toFixed(2)}`;
+            field('discount').textContent = `$${totals.discount.toFixed(2)}`;
+            field('delivery').textContent = `$${totals.delivery.toFixed(2)}`;
+            field('total').textContent = `$${totals.total.toFixed(2)}`;
         }
 
         window.addEventListener('cart:updated', e => loadCart());

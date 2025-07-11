@@ -7,3 +7,4 @@ import '../components/product-slider/product-slider.js';
 import '../components/single-product/single-product.js';
 
 import './home.js';
+import './product.js';

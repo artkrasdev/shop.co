@@ -25,10 +25,10 @@ class SiteHeader extends HTMLElement {
                         </div>
 
                         <ul>
-                            <li><a href="#">Shop</a></li>
-                            <li><a href="#">On Sale</a></li>
-                            <li><a href="#">New Arrivals</a></li>
-                            <li><a href="#">Brands</a></li>
+                            <li><a href="/shop">Shop</a></li>
+                            <li><a href="/shop?category=on-sale">On Sale</a></li>
+                            <li><a href="/shop?category=new-arrivals">New Arrivals</a></li>
+                            <li><a href="/shop?category=brands">Brands</a></li>
                         </ul>
 
                         <div class="nav__search">

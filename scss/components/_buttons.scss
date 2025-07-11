@@ -12,6 +12,10 @@
         @extend .button;
         background-color: $color-primary;
         color: $color-secondary;
+
+        &:hover {
+            background-color: $color-primary-light;
+        }
     }
 
     &--secondary {
@@ -19,6 +23,11 @@
         background-color: transparent;
         border: 1px solid $color-gray;
         color: $color-primary;
+
+        &:hover {
+            background-color: $color-border;
+            color: $color-secondary;
+        }
     }
 
     &--white {

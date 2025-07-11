@@ -375,10 +375,46 @@ document.addEventListener('DOMContentLoaded', () => {
       // Store all cards for pagination later
       lastMatchingCards = Array.from(productsContainer.querySelectorAll('product-card'));
       updateDisplayedCards();
+
+      // If any filters have been pre-selected (e.g., via URL), apply them now
+      if (selectedStyles.length > 0 || selectedSizes.length > 0 || selectedCategory) {
+        filterCards();
+      }
     } catch (error) {
       console.error(error);
     }
   })();
+
+  // --- Set h1 to category from URL if present ---
+  const params = new URLSearchParams(window.location.search);
+  const categoryParam = params.get('category');
+  if (categoryParam) {
+    // Convert slug to human-readable (e.g., new-arrivals -> New Arrivals)
+    const formatted = categoryParam
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+    const h1 = document.querySelector('.shop__products__header h1');
+    if (h1) h1.textContent = formatted;
+
+    // If the param corresponds to a style, pre-select that style filter
+    const styleSlugs = ['casual', 'formal', 'party', 'gym'];
+    const slug = categoryParam.toLowerCase();
+    if (styleSlugs.includes(slug)) {
+      if (!selectedStyles.includes(slug)) selectedStyles.push(slug);
+
+      // Highlight the matching style item in the filters panel
+      if (typeof styleItems !== 'undefined' && styleItems.length) {
+        styleItems.forEach((item) => {
+          const label = item.querySelector('p')?.textContent.trim() || '';
+          const itemSlug = slugify(label);
+          if (itemSlug === slug) {
+            item.classList.add('selected');
+          }
+        });
+      }
+    }
+  }
 
   /* --------------------------------------------------
    * Apply Filters button

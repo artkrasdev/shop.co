@@ -2,6 +2,11 @@
 @use '../../scss/abstracts/mixins' as *;
 @use '../../scss/abstracts/functions' as *;
 
+:host {
+  flex: 1;
+  width: 100%;
+}
+
 .single-product__image {
   @include flex(row, center, flex-start, $space-md);
   width: 100%;
@@ -39,6 +44,33 @@
       width: 100%;
       object-fit: cover;
       border-radius: $radius-lg;
+    }
+  }
+
+  @include respond-to(phone) {
+    flex-direction: column-reverse;
+    height: auto;
+    gap: $space-sm;
+
+    &__thumb {
+      @include flex(row, space-between, center, $space-xs);
+      width: 100%;
+      height: auto;
+
+      img {
+        width: calc(33%);
+        height: 106px;
+      }
+    }
+
+    &__main {
+      width: 100%;
+
+      img {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+      }
     }
   }
 }
