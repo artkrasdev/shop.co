@@ -24,7 +24,8 @@
         </section>
     </main>
     <script>
-      fetch('http://localhost:8888/SHOP.CO/backend/api/check-session.php', {
+      const WP_SITE_URL = 'https://artur-shop.poei.garage404.com/'; 
+      fetch(`${WP_SITE_URL}/wp-json/wp/v2/posts?_embed&per_page=2&page=1`, {
         credentials: 'include'
       })
       .then(res => {
@@ -42,7 +43,7 @@
             adminCrudSection.style.display = '';
 
             function loadProducts() {
-              fetch('http://localhost:8888/SHOP.CO/backend/api/products.php', { credentials: 'include' })
+              fetch(`${WP_SITE_URL}/wp-json/wp/v2/products`, { credentials: 'include' })
                 .then(res => res.json())
                 .then(products => {
                   const list = document.getElementById('product-list');
@@ -67,7 +68,7 @@
               e.preventDefault();
               const form = e.target;
               const data = Object.fromEntries(new FormData(form));
-              fetch('http://localhost:8888/SHOP.CO/backend/api/products.php', {
+              fetch(`${WP_SITE_URL}/wp-json/wp/v2/products`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
@@ -87,7 +88,7 @@
                   price: li.querySelector('.edit-price').value,
                   original_price: li.querySelector('.edit-original-price').value
                 };
-                fetch('http://localhost:8888/SHOP.CO/backend/api/products.php', {
+                fetch(`${WP_SITE_URL}/wp-json/wp/v2/products`, {
                   method: 'PUT',
                   credentials: 'include',
                   headers: { 'Content-Type': 'application/json' },
@@ -95,7 +96,7 @@
                 }).then(loadProducts);
               }
               if (e.target.classList.contains('delete-btn')) {
-                fetch(`http://localhost:8888/SHOP.CO/backend/api/products.php?id=${id}`, {
+                fetch(`${WP_SITE_URL}/wp-json/wp/v2/products?id=${id}`, {
                   method: 'DELETE',
                   credentials: 'include'
                 }).then(loadProducts);
@@ -111,7 +112,7 @@
       });
 
       document.getElementById('logout-button').addEventListener('click', () => {
-        fetch('http://localhost:8888/SHOP.CO/backend/api/logout.php', {
+        fetch(`${WP_SITE_URL}/wp-json/wp/v2/logout`, {
           credentials: 'include'
         })
         .then(() => {

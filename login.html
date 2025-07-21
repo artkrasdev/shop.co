@@ -37,7 +37,8 @@
         </div>
     </div>
     <script>
-         fetch('http://localhost:8888/SHOP.CO/backend/api/check-session.php', {
+        const WP_SITE_URL = 'https://artur-shop.poei.garage404.com/';
+         fetch(`${WP_SITE_URL}/wp-json/wp/v2/posts?_embed&per_page=2&page=1`, {
             credentials: 'include'
         })
         .then(res => {
@@ -83,7 +84,7 @@
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
             try {
-                const res = await fetch('http://localhost:8888/SHOP.CO/backend/api/login.php', {
+                const res = await fetch(`${WP_SITE_URL}/wp-json/wp/v2/posts?_embed&per_page=2&page=1`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password }),
@@ -108,7 +109,7 @@
             const email = document.getElementById('register-email').value;
             const password = document.getElementById('register-password').value;
             try {
-                const res = await fetch('http://localhost:8888/SHOP.CO/backend/api/register.php', {
+                const res = await fetch(`${WP_SITE_URL}/wp-json/wp/v2/posts?_embed&per_page=2&page=1`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name, email, password }),
