@@ -5,6 +5,8 @@ import '../components/cart-item/cart-item.js';
 import '../components/site-footer/site-footer.js';
 import '../components/product-slider/product-slider.js';
 import '../components/single-product/single-product.js';
+import '../components/placeholder/placeholder.js';
+import '../components/toast/toast.js';
 
 import './home.js';
 import './product.js';

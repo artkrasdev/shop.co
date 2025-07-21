@@ -1,0 +1,66 @@
+@use '../../scss/abstracts/variables' as *;
+@use '../../scss/abstracts/mixins' as *;
+
+.toast {
+  position: fixed;
+  right: $space-xl;
+  /* bottom will be set dynamically via JS for stacking */
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  padding: $space-md $space-lg;
+  border-radius: $radius-md;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  background-color: $color-secondary;
+  color: $color-text;
+  min-width: 220px;
+  max-width: 350px;
+  margin: 0 0 $space-md 0;
+  border: 1px solid $color-border;
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: opacity 0.4s cubic-bezier(0.4,0,0.2,1), transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: auto;
+  z-index: 9999;
+
+  &.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  &.hide {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    pointer-events: none;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+  }
+
+  &__text {
+    flex: 1;
+    word-break: break-word;
+  }
+
+  &--success {
+    border-color: $color-success;
+    background-color: #E6F9ED;
+    color: $color-success;
+  }
+  &--error {
+    border-color: $color-error;
+    background-color: #FFF0F0;
+    color: $color-error;
+  }
+  &--warning {
+    border-color: $color-warning;
+    background-color: #FFF9E6;
+    color: $color-warning;
+  }
+} 

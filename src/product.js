@@ -1,9 +1,3 @@
-// Get the product slug from the URL and fetch data from WordPress, then populate the <single-product> component
-
-// Helper to safely get nested values
-const getSafe = (obj, path, fallback = undefined) => {
-  return path.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), obj) ?? fallback;
-};
 
 async function fetchProductBySlug(slug) {
   const endpoint = `http://localhost:8888/wordpress/wp-json/wp/v2/product?slug=${encodeURIComponent(slug)}`;
@@ -19,13 +13,13 @@ function transformWpProduct(wp) {
 
   // Images: main image + gallery if present
   const images = [];
-  const mainImgUrl = getSafe(acf, 'main_image.url');
+  const mainImgUrl = acf.main_image?.url;
   if (mainImgUrl) images.push(mainImgUrl);
 
   const gallery = acf.product_gallery;
   if (Array.isArray(gallery)) {
     gallery.forEach(img => {
-      const url = getSafe(img, 'url');
+      const url = img.url;
       if (url) images.push(url);
     });
   }
@@ -33,7 +27,7 @@ function transformWpProduct(wp) {
   return {
     id: wp.id,
     images,
-    title: acf.title || getSafe(wp, 'title.rendered', ''),
+    title: acf.title || '',
     rating: acf.rating || 0,
     price: parseFloat(acf.price) || 0,
     originalPrice: parseFloat(acf.original_price) || 0,

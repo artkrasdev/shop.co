@@ -17,23 +17,19 @@
       return;
     }
 
-    // Clear existing placeholder cards (comment out if you want to keep them)
     newArrivalsContainer.innerHTML = '';
     topSellingContainer.innerHTML = '';
 
-    // Select 4 random products (clone of array first to avoid mutating original)
     const selected = [...products].sort(() => 0.5 - Math.random()).slice(0, 4);
 
     const buildCard = (product) => {
       const acf = product.acf || {};
       const card = document.createElement('product-card');
 
-      // Required/basic attributes
       card.setAttribute('slug', product.slug);
       card.setAttribute('name', acf.title || product.title?.rendered || '');
       card.setAttribute('rating', acf.rating || '4');
 
-      // Pricing
       if (acf.price) card.setAttribute('price', acf.price);
       if (acf.original_price) {
         card.setAttribute('originalPrice', acf.original_price);
@@ -45,7 +41,6 @@
         }
       }
 
-      // Image
       if (acf.main_image?.url) card.setAttribute('image', acf.main_image.url);
 
       return card;

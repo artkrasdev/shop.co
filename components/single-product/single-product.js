@@ -188,6 +188,12 @@ class SingleProduct extends HTMLElement {
 
                 // Notify the rest of the app that the cart has been updated
                 window.dispatchEvent(new CustomEvent('cart:updated', { detail: cart }));
+
+                // Show toast
+                const toast = document.createElement('toast-message');
+                toast.setAttribute('text', 'Added to cart!');
+                toast.setAttribute('type', 'success');
+                document.body.appendChild(toast);
             });
         }
     }

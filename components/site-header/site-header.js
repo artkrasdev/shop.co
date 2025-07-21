@@ -56,6 +56,7 @@ class SiteHeader extends HTMLElement {
                                             <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
                                         </g>
                                     </svg>
+                                    <span class="cart-qty-badge" style="display:none"></span>
                                 </a>
                             </div>
 
@@ -75,6 +76,36 @@ class SiteHeader extends HTMLElement {
                 </div>
             </header>
         `;
+
+        // Add cart badge logic
+        this.updateCartQty = this.updateCartQty.bind(this);
+        window.addEventListener('cart:updated', this.updateCartQty);
+    }
+
+    connectedCallback() {
+        this.updateCartQty();
+    }
+
+    disconnectedCallback() {
+        window.removeEventListener('cart:updated', this.updateCartQty);
+    }
+
+    updateCartQty() {
+        const badge = this.shadowRoot.querySelector('.cart-qty-badge');
+        let cart = [];
+        try {
+            cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        } catch (e) {
+            cart = [];
+        }
+        const qty = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
+        if (qty > 0) {
+            badge.textContent = qty;
+            badge.style.display = 'inline-block';
+        } else {
+            badge.textContent = '';
+            badge.style.display = 'none';
+        }
     }
 }
 
