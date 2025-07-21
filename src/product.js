@@ -1,6 +1,7 @@
+const WP_SITE_URL = 'https://artur-shop.poei.garage404.com/'; 
 
 async function fetchProductBySlug(slug) {
-  const endpoint = `http://localhost:8888/wordpress/wp-json/wp/v2/product?slug=${encodeURIComponent(slug)}`;
+  const endpoint = `${WP_SITE_URL}/wp-json/wp/v2/product?slug=${encodeURIComponent(slug)}`;
   const res = await fetch(endpoint, { credentials: 'include' });
   if (!res.ok) throw new Error(`Failed fetching product: ${res.status}`);
   const data = await res.json();
@@ -126,7 +127,7 @@ async function loadRelatedProducts(categories = [], currentSlug = '', limit = 4)
   if (!Array.isArray(categories) || categories.length === 0) return;
 
   try {
-    const endpoint = 'http://localhost:8888/wordpress/wp-json/wp/v2/product?per_page=100';
+    const endpoint = `${WP_SITE_URL}/wp-json/wp/v2/product?per_page=100`;
     const res = await fetch(endpoint, { credentials: 'include' });
     if (!res.ok) throw new Error(`Failed fetching products list: ${res.status}`);
     const products = await res.json();

@@ -3,7 +3,7 @@ import './main.js';
 const PROJECTS_CONTAINER_ID = 'wp-projects';
 const LOAD_MORE_BTN_ID = 'load-more-projects';
 
-const WP_SITE_URL = 'http://localhost:8888/wordpress';
+const WP_SITE_URL = 'https://artur-shop.poei.garage404.com/'; 
 const PROJECTS_PER_PAGE = 2;
 
 let currentPage = 1;

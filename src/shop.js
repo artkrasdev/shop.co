@@ -1,4 +1,4 @@
-// Initialize price slider using noUiSlider
+const WP_SITE_URL = 'https://artur-shop.poei.garage404.com/'; 
 
 document.addEventListener('DOMContentLoaded', () => {
   const sliderElement = document.getElementById('price-slider');

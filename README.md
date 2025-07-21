@@ -11,7 +11,7 @@ SHOP.CO is a modern e-commerce platform built with Vite and SASS, providing a se
 - Vite-based development environment
 
 ## Screenshot
-![App Screenshot](./assets/screenshot.png)
+![App Screenshot](assets/screenshot.png)
 
 ## Prerequisites
 Before you begin, ensure you have the following installed:
