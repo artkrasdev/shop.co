@@ -5,6 +5,7 @@
 
 // COLORS
 $color-primary: #000000;
+$color-primary-light: #5a5a5a;
 $color-secondary: #FFFFFF;
 $color-gray: #F1F0F1;
 $color-gray-light: #F0F0F0;
@@ -13,6 +14,9 @@ $color-text-gray: #909090;
 $color-text-gray-light: #616060;
 $color-border: #e0e0e0;
 $color-red: #FF3E3E;
+$color-success: #01AB31;
+$color-warning: #FFC633;
+$color-error: #FF3E3E;
 
 
 // TYPOGRAPHY
@@ -61,12 +65,9 @@ $max-width-content: 960px;
 
 // BREAKPOINTS
 $breakpoints: (
-  xs: 475px,
-  sm: 640px,
-  md: 768px,
-  lg: 1024px,
-  xl: 1280px,
-  xxl: 1536px
+  phone: 600px,
+  tablet: 900px,
+  desktop: 1200px
 );
 
 

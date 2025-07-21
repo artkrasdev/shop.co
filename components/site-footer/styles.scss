@@ -1,0 +1,157 @@
+@use '../../scss/abstracts/variables' as *;
+@use '../../scss/abstracts/mixins' as *;
+@use '../../scss/base/reset' as *;
+
+.footer {
+    @include flex(column, center, center);
+
+    &__newsletter {
+        @include flex(row, space-between, center);
+        background-color: $color-primary;
+        max-width: $max-width-container;
+        border-radius: $radius-xl;
+        padding: $space-xl $space-xxl;
+        width: 100%;
+        z-index: 1;
+
+        h2 {
+            @include text($font-size-xl, $font-weight-bold, $color-secondary);
+            line-height: 1.1;
+        }
+
+        &__form {
+            @include flex(column, center, center, $space-sm);
+            min-width: 30%;
+
+            input {
+                @include text($font-size-base, $font-weight-normal, $color-secondary);
+                background-color: $color-secondary;
+                border-radius: $radius-full;
+                padding: $space-sm $space-lg;
+                width: 100%;
+            }
+
+            button {
+                padding: $space-sm $space-lg;
+                width: 100%;
+            }
+        }
+
+        @include respond-to(phone) {
+            flex-direction: column;
+            padding: $space-xl $space-md;
+            margin: 0 $space-md;
+            width: 95%;
+
+           > h2  {
+            margin-bottom: $space-lg;
+            padding: 0 $space-sm;
+           }
+
+           br {
+            display: none;
+           }
+
+            &__form {
+                width: 95%;
+            }
+
+
+        }
+    }
+
+    &__main   {
+        @include flex(column, center, center, $space-xl);
+        background-color: $color-gray;
+        width: 100%;
+        padding-top: $space-section * 2;
+        margin-top: -$space-section;
+
+        &__top {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: $space-xl;
+            max-width: $max-width-container;
+            width: 100%;
+
+            @include respond-to(phone) {
+                max-width: 95%;
+                grid-template-columns: repeat(2, 1fr);
+                justify-items: start;
+
+                &--first {
+                    grid-column: 1 / -1; 
+                }
+
+                &--links {
+                    @include flex(column, flex-start, flex-start);
+                }
+            }
+
+            &--first {
+                p {
+                    margin-top: $space-md;
+                }
+
+                &__social {
+                    @include flex(row, flex-start, center, $space-sm);
+                    padding-top: $space-lg;
+                }
+            }
+
+            &--links {
+                @include flex(column, center, flex-end);
+                text-align: left;
+            }
+
+            h3 {
+                margin-bottom: $space-lg;
+                @include text($font-size-base, $font-weight-normal, $color-text);
+                letter-spacing: 0.2em;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+                
+                li {
+                    margin-bottom: $space-sm;
+                    
+                    a {
+                        @include text($font-size-base, $font-weight-light, $color-text-gray);
+                    }
+                }
+            }
+        }
+
+        &__bottom {
+            @include flex(row, space-between, center);
+            max-width: $max-width-container;
+            background-color: $color-gray;
+            width: 100%;
+            margin-top: $space-lg;
+            padding: $space-lg 0 $space-section 0;
+            border-top: 1px solid $color-border;
+
+            @include respond-to(phone) {
+                flex-direction: column;
+                gap: $space-md;
+            }
+
+            &__payments {
+                @include flex(row, center, center);
+                width: fit-content;
+
+                &__item {
+                    @include flex(row, center, center);
+                    background-color: $color-secondary;
+                    border-radius: $radius-md;
+                    width: 45px;
+                    height: 30px;
+                    margin-right: $space-sm;
+
+                }
+            }
+        }
+    }
+}

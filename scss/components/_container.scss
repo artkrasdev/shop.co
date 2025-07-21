@@ -7,4 +7,9 @@
     margin: 0 auto;
     height: 100%;
     @include flex(column, center, left);
+
+    @include respond-to(phone) {
+        padding: 0 $space-md;
+        @include flex(column, start, center);
+    }
 }

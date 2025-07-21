@@ -1,0 +1,73 @@
+@use '../../scss/abstracts/variables' as *;
+@use '../../scss/abstracts/mixins' as *;
+@use '../../scss/abstracts/functions' as *;
+@use '../../scss/base/reset' as *;
+
+:host {
+    display: block;
+    width: var(--card-width, 25%);
+    height: fit-content;
+
+    @include respond-to(phone) {
+        width: 100%;
+    }
+}
+
+.product {
+    @include flex(column, center, flex-start, $space-xs);
+    width: 100%;
+    cursor: pointer;
+
+    @include respond-to(phone) {
+        min-width: var(--card-width, 18em);
+        width: 100%;
+        
+    }
+
+    h4 {
+        @include text($font-size-md, $font-weight-medium, $color-primary);
+    }
+
+    &__rating {
+        @include flex(row, center, center, $space-sm);
+
+        &__stars {
+            @include flex(row, center, center, $space-xxs);
+        }
+
+        p {
+            @include text($font-size-sm, $font-weight-normal, $color-text-gray);
+        }
+    }
+
+    &__price {
+        @include flex(row, center, center, $space-sm);
+        
+        &--current {
+            @include text($font-size-md, $font-weight-medium, $color-primary);
+        }
+
+        &--original {
+            @include text($font-size-md, $font-weight-medium, $color-text-gray);
+            text-decoration: line-through;
+        }
+
+        &--discount {
+            background-color: transparentize-color($color-red, 0.15);
+            padding: 0.25rem 0.65rem;
+            border-radius: $radius-full;
+
+            p {
+                @include text($font-size-xs, $font-weight-normal, $color-red);
+            }
+        }
+    }
+
+    img {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: $radius-lg;
+        margin-bottom: 1em;
+    }
+}

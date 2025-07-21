@@ -1,0 +1,171 @@
+@use '../../scss/abstracts/variables' as *;
+@use '../../scss/abstracts/mixins' as *;
+@use '../../scss/abstracts/functions' as *;
+@use '../../scss/base/reset' as *;
+@use '../../scss/components/buttons' as *;
+
+:host {
+    display: block;
+    width: 100%;
+}
+
+.single-product {
+    @include flex(row, space-between, center, $space-xl);
+    margin-top: $space-lg;
+
+    &__info {
+        @include flex(column, flex-start, flex-start);
+        width: 50%;
+
+        &__rating {
+            @include flex(row, center, center, $space-xs);
+
+            &__stars {
+                @include flex(row, center, center, $space-xs);
+            }
+        }
+
+        &__price {
+            @include flex(row, center, center, $space-sm);
+            margin: $space-sm 0;
+            
+            &--current {
+                @include text($font-size-lg, $font-weight-medium, $color-primary);
+            }
+    
+            &--original {
+                @include text($font-size-lg, $font-weight-medium, $color-text-gray);
+                text-decoration: line-through;
+            }
+    
+            &--discount {
+                background-color: transparentize-color($color-red, 0.15);
+                padding: 0.25rem 0.65rem;
+                border-radius: $radius-full;
+    
+                p {
+                    @include text($font-size-sm, $font-weight-normal, $color-red);
+                }
+            }
+        }
+
+        > p {
+            @include text($font-size-sm, $font-weight-light, $color-text-gray);
+            border-bottom: 1px solid $color-border;
+            margin-bottom: $space-sm;
+            padding-bottom: $space-sm;
+        }
+
+        &__colors {
+            @include flex(column, center, flex-start, $space-sm);
+            width: 100%;
+            margin-bottom: $space-sm;
+            padding-bottom: $space-sm;
+            border-bottom: 1px solid $color-border;
+
+            p {
+                @include text($font-size-sm, $font-weight-normal, $color-text-gray);
+            }
+
+            &__variants {
+                @include flex(row, center, center, $space-sm);
+
+                button {
+                    background-color: $color-red;
+                    width: 25px;
+                    height: 25px;
+                    border-radius: $radius-full;
+                    border: 1px solid $color-border;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    transition: border-color 0.2s;
+                }
+
+                // Style for selected color button
+                button[data-selected="true"] {
+                    border: 1px solid $color-primary;
+                }
+
+                // Checkmark icon centered in the color button
+                .checkmark {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    pointer-events: none;
+                }
+            }
+        }
+
+        &__sizes {
+            @include flex(column, center, flex-start, $space-sm);
+            width: 100%;
+            margin-bottom: $space-md;
+            padding-bottom: $space-md;
+            border-bottom: 1px solid $color-border;
+
+            p {
+                @include text($font-size-sm, $font-weight-normal, $color-text-gray);
+            }
+
+            &__variants {
+                @include flex(row, center, center, $space-sm);
+                
+                button {
+                    @include text($font-size-xs, $font-weight-light, $color-text-gray);
+                    background-color: $color-gray-light;
+                    padding: $space-sm $space-md;
+                    border-radius: $radius-full;
+                    cursor: pointer;
+                    transition: background 0.2s, color 0.2s;
+                }
+
+                // Style for active (selected) size button
+                .active {
+                    background-color: $color-primary;
+                    color: #fff;
+                    border-color: $color-primary;
+                    font-weight: $font-weight-medium;
+                }
+            }
+        }
+
+        &__actions {
+            @include flex(row, space-between, flex-end, $space-sm);
+            width: 100%;
+            height: 100%;
+
+            &__quantity {
+                @include flex(row, center, center, $space-md);
+                background: $color-gray;
+                padding: $space-sm $space-lg;
+                border-radius: $radius-full;
+
+                > span {
+                    margin: 0 $space-sm;
+                }
+            }
+
+            > button {
+                width: 100%;
+                padding: $space-md $space-lg;
+            }
+        }
+
+    }
+
+    @include respond-to(phone) {
+        @include flex(column, center, center, $space-md);
+
+        &__info {
+            width: 100%;
+        }
+    }
+
+}

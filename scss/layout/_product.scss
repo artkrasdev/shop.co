@@ -1,0 +1,147 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/functions' as *;
+
+.product {
+    padding: $space-lg $space-md 0 $space-md;
+    width: 100%;
+    max-width: $max-width-container;
+    margin: 0 auto;
+}
+
+.info {
+    padding: $space-section $space-md 0 $space-md;
+    width: 100%;
+    max-width: $max-width-container;
+    margin: 0 auto;
+
+    &__header {
+        @include flex(row, space-between, center);
+        width: 100%;
+        text-align: center;
+
+        > p {
+            width: 33.33%;
+            border-bottom: 1px solid $color-border;
+            padding-bottom: $space-sm;
+            cursor: pointer;
+
+            &.selected {
+                font-weight: 500;
+                border-bottom: 1px solid $color-primary;
+            }
+        }
+    }
+
+    &__reviews {
+        @include flex(column, center, center);
+        padding-top: $space-sm;
+        width: 100%;
+
+        &__header {
+            @include flex(row, space-between, center);
+            width: 100%;
+
+            > p {
+                @include text($font-size-md, $font-weight-medium, $color-primary);
+                cursor: pointer;
+            }
+
+            &__sort {
+                @include flex(row, center, center, $space-md);
+                margin-top: $space-md;
+
+                &__settings {
+                    @include flex(row, center, center);
+                    width: 48px;
+                    height: 48px;
+                    background-color: $color-gray-light;
+                    border-radius: $radius-full;
+                    cursor: pointer;
+                }
+
+                &__filter {
+                    @include flex(row, center, center, $space-md);
+                    height: 48px;
+                    background-color: $color-gray-light;
+                    border-radius: $radius-full;
+                    padding: 0 $space-md;
+                    cursor: pointer;
+
+                    > p {
+                        @include text($font-size-sm, $font-weight-normal, $color-primary);
+                    }
+                }
+            }
+
+            @include respond-to(phone) {
+                margin: $space-sm 0;
+
+                &__sort {
+                    margin-top: 0;
+
+                    &__filter {
+                        display: none;
+
+                        
+                    }
+                }
+            }
+        }
+
+        &__list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: $space-lg;
+            margin-top: $space-lg;
+
+            @include respond-to(phone) {
+                grid-template-columns: repeat(1, 1fr);
+                gap: $space-sm;
+                margin-top: $space-sm;
+            }
+        }
+
+        > button {
+            margin-top: $space-lg;
+        }
+    }
+}
+
+.related {
+    padding: $space-section 0;
+    width: 100%;
+    text-align: center;
+    max-width: $max-width-container;
+    margin: 0 auto;
+
+    > h2 {
+        @include text($font-size-xl, $font-weight-bold, $color-primary);
+
+        br {
+            display: none;
+        }
+    }
+
+    &__products {
+        @include flex(row, center, center, $space-md);
+        margin-top: $space-lg;
+    }
+
+    @include respond-to(phone) {
+        max-width: none;
+
+        &__products {
+            @include flex(row, start, flex-start, $space-lg);
+            gap: $space-md;
+            overflow-x: auto;
+            max-width: 100%;
+            padding: 0 $space-md;
+        }
+
+        button {
+            width: 92%;
+            margin: $space-xl 0 $space-section 0;
+        }
+    }
+}

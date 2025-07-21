@@ -7,6 +7,7 @@
     margin: 0 auto;
     padding-top: $space-section;
     border-bottom: 1px solid $color-gray;
+    
 
     &__products {
         @include flex(row, center, flex-start, $space-lg);        
@@ -17,5 +18,22 @@
         width: 20%;
         margin: $space-xl 0 $space-section 0;
         
+    }
+
+    @include respond-to(phone) {
+        max-width: none;
+
+        &__products {
+            @include flex(row, start, flex-start, $space-lg);
+            gap: $space-md;
+            overflow-x: auto;
+            max-width: 100%;
+            padding: 0 $space-md;
+        }
+
+        button {
+            width: 92%;
+            margin: $space-xl 0 $space-section 0;
+        }
     }
 }

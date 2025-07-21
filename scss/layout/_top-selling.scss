@@ -17,4 +17,21 @@
         margin: $space-xl 0 $space-section 0;
         
     }
+
+    @include respond-to(phone) {
+        max-width: none;
+
+        &__products {
+            @include flex(row, start, flex-start, $space-lg);
+            gap: $space-md;
+            overflow-x: auto;
+            max-width: 100%;
+            padding: 0 $space-md;
+        }
+
+        button {
+            width: 92%;
+            margin: $space-xl 0 $space-section 0;
+        }
+    }
 }

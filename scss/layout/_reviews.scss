@@ -6,6 +6,9 @@
     margin-top: $space-section;
     max-width: $max-width-container;
     margin: $space-section auto;
+    position: relative;
+    margin-bottom: 20em;
+    height: fit-content;
 
     &__header {
         @include flex(row, space-between, center);
@@ -17,7 +20,44 @@
     }
 
     &__items {
-        @include flex(row, center, center, $space-lg);
+        width: 100%;
 
+        .swiper {
+            overflow: hidden;
+        }
+
+        .swiper-wrapper {
+            display: flex;
+            position: absolute;
+            top: 5em;
+            
+        }
+
+        .swiper-slide {
+            display: flex;
+            filter: blur(2px);
+            transition: filter 0.3s;
+        }
+  
+        .swiper-slide-active,
+        .swiper-slide-next,
+        .swiper-slide-prev {
+            filter: none;
+        }
+
+
+    }
+
+    @include respond-to(phone) {
+        padding: 0 $space-md;
+        margin-bottom: 17.5em;
+
+        &__items {
+
+            .swiper-wrapper {
+                top: 7em;
+                
+            }
+        }
     }
 }

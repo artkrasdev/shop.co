@@ -1,0 +1,55 @@
+@use '../../scss/abstracts/variables' as *;
+@use '../../scss/abstracts/mixins' as *;
+@use '../../scss/base/reset' as *;
+
+:host {
+    display: block;
+    width: 100%;
+    
+}
+
+.review {
+    @include flex(column, center, flex-start);
+    border: 1px solid $color-border;
+    width: 100%;
+    min-width: 25em;
+    padding: $space-lg;
+    gap: $space-xs;
+    border-radius: $radius-xl;
+
+    &__stars {
+        @include flex(row, center, center, $space-xs);
+    }
+
+    &__name {
+        @include flex(row, center, center);
+        gap: $space-xs;
+
+        > p {
+            @include text($font-size-md, $font-weight-medium, $color-text);
+        }
+    }
+
+    > p {
+        @include text($font-size-base, $font-weight-normal, $color-text-gray);
+        padding-right: $space-md;
+    }
+    
+    p:last-child {
+        @include text($font-size-base, $font-weight-normal, $color-text-gray-light);
+        margin-top: $space-md;
+    }
+
+
+
+}
+
+@include respond-to(phone) {
+    :host {
+        width: 100%;
+    }
+
+    .review {
+        min-width: 100%;
+    }
+}

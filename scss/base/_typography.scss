@@ -8,6 +8,11 @@ body {
 
 h1 {
     @include text($font-size-xxl, $font-weight-bold, $color-text);
+
+    @include respond-to(phone) {
+        @include text($font-size-xl, $font-weight-bold, $color-text);
+        line-height: 1.1em;
+    }
 }
 
 h2 {
