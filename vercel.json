@@ -1,5 +1,15 @@
 {
     "$schema": "https://openapi.vercel.sh/vercel.json",
-    "cleanUrls": true
+    "cleanUrls": true,
+    "rewrites": [
+        { "source": "/cart", "destination": "/cart.html" },
+        { "source": "/product", "destination": "/product.html" },
+        { "source": "/shop", "destination": "/shop.html" },
+        { "source": "/blog", "destination": "/blog.html" },
+        { "source": "/login", "destination": "/login.html" },
+        { "source": "/projects", "destination": "/projects.html" },
+        { "source": "/dashboard", "destination": "/dashboard.html" },
+        { "source": "/", "destination": "/index.html" }
+    ]
   }
   
