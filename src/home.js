@@ -1,6 +1,7 @@
 // Fetch 4 random products from WordPress REST API and render them in both New Arrivals and Top Selling sections
 (async function loadProducts() {
-  const API_URL = 'http://localhost:8888/wordpress/wp-json/wp/v2/product';
+  const WP_SITE_URL = 'https://artur-shop.poei.garage404.com/'; 
+  const API_URL = `${WP_SITE_URL}/wp-json/wp/v2/product`;
   try {
     const response = await fetch(API_URL);
     if (!response.ok) {

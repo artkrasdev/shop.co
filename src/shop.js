@@ -296,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * Fetch and render products from WordPress
    * -------------------------------------------------- */
   (async function loadProducts() {
-    const API_URL = 'http://localhost:8888/wordpress/wp-json/wp/v2/product?per_page=12';
+    const API_URL = `${WP_SITE_URL}/wp-json/wp/v2/product?per_page=12`;
     try {
       const response = await fetch(API_URL);
       if (!response.ok) {

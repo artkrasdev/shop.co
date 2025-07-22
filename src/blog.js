@@ -4,7 +4,7 @@ import '../components/blog-item/blog-item.js';
 const POSTS_CONTAINER_ID = 'wp-posts';
 const LOAD_MORE_BTN_ID = 'load-more';
 
-const WP_SITE_URL = 'http://localhost:8888/wordpress';
+const WP_SITE_URL = 'https://artur-shop.poei.garage404.com/';
 const POSTS_PER_PAGE = 2;
 
 let currentPage = 1;
